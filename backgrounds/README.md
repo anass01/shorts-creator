@@ -1,0 +1,1 @@
+All the videos are taken from [here](https://mixkit.co/free-vertical-videos/)
