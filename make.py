@@ -58,7 +58,7 @@ for line in f:
         y, x, _ = mid.shape
 
         # overlaying the center text image on frame
-        frame[(h-y)//2:-(h-y)//2, (w-x)//2:-(w-x)//2] = mid[:,:]
+        frame[(h-y)//2:-(h-y)//2, (w-x)//2:-(w-x)//2] = mid
         # adding frame to frames
         frames.append(frame)
     
