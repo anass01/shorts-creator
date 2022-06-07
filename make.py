@@ -11,7 +11,7 @@ import os
 import random
 import numpy as np
 
-f = open('text/programming_jokes.txt', 'r')
+f = open('text/dadjokes.txt', 'r')
 
 # to choose a random background video
 rnd = lambda : random.randrange(1,6)

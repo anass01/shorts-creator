@@ -4,5 +4,3 @@
 - [x] synchronize with audio
 - [x] overlay with background
 - [x] create a youtube channel
-- [ ] use api to upload
-- [ ] put everything on cloud
