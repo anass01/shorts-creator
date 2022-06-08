@@ -3,6 +3,7 @@
 - [x] add text to video
 - [x] synchronize with audio
 - [x] overlay with background
-- [x] create a youtube channel
-- [ ] use youtube api to upload a public video [youtube api requires registeration on cloud (credit card required)]
-- [ ] put stuff on cloud [cancelled because of previous step]
+- [ ] add an overlay function to mix two videos
+- [ ] make things a bit more custom
+- [ ] start from the top line instead of bottom
+  
