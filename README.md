@@ -4,5 +4,5 @@
 - [x] synchronize with audio
 - [x] overlay with background
 - [x] create a youtube channel
-- [ ] use youtube api to upload a public video
-- [ ] put stuff on cloud
+- [ ] use youtube api to upload a public video [youtube api requires registeration on cloud (credit card required)]
+- [ ] put stuff on cloud [cancelled because of previous step]
