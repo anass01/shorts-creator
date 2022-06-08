@@ -15,5 +15,5 @@ def create(text, img, font):
     w,h = draw.textsize(text, font=font)
     W,H = img.size
     x,y = 0.5*(W-w),0.75*H-h
-    draw.text((x,y), text, font = font, fill = "white")
+    draw.text((x,y), text, font = font, fill = "white", anchor='la')
     return img    

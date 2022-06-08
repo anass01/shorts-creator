@@ -25,7 +25,7 @@ for line in f:
     count += 1
 
     # saving the audio
-    obj = gTTS(text= line, lang = 'en', tld = 'com.au', slow = False)
+    obj = gTTS(text= line, lang = 'en', slow = False)
     obj.save('temp.mp3')
     del obj
 
