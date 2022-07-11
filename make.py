@@ -14,7 +14,7 @@ import numpy as np
 f = open('text/dadjokes.txt', 'r')
 
 # to choose a random background video
-rnd = lambda : random.randrange(1,6)
+rnd = lambda : 1
 
 # setting the font
 font = ImageFont.truetype("fonts/mangabey-font/MangabeyRegular-rgqVO.otf", size=80)
@@ -33,7 +33,7 @@ for line in f:
     duration = ffmpeg.probe('temp.mp3')['format']['duration']
 
     # wrapping the line
-    text = wrap(line, 35)
+    text = wrap(line, 16)
 
     # initializing background
     background = iio.get_reader(f"backgrounds/{rnd()}.mp4")
@@ -43,23 +43,21 @@ for line in f:
 
     # finding the duration of autio to match with the video frames
     for i in range(len(text)):
-        img = Image.fromarray(np.zeros((912,912,3), dtype = np.uint8))
+
         try:
             frame = background.get_next_data()
         except:
             background = iio.get_reader(f"backgrounds/{rnd()}.mp4")
             frame = background.get_next_data()
         h, w, _ = frame.shape
-        
+        img = Image.fromarray(np.zeros((h,w,4), dtype=np.uint8))
         # creating the frame that would be in the center
         mid = create(text[:i+1], img, font)
-        # converting to numpy array
-        mid = np.array(mid)
-        y, x, _ = mid.shape
 
-        # overlaying the center text image on frame
-        frame[(h-y)//2:-(h-y)//2, (w-x)//2:-(w-x)//2] = mid
-        # adding frame to frames
+        PilFrame = Image.fromarray(frame)
+        PilFrame.paste(mid,(0,0) ,mask=mid.convert("RGBA"))
+
+        frame = np.array(PilFrame)
         frames.append(frame)
     
     # adding a little pause at the end

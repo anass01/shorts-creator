@@ -1,1 +1,1 @@
-A lot of goddam text, i hate programming gui, you never know what that bullshit api does, even though the original programmer spent too much time building it, it just doesn't make me happy
+Overlaying an image over another refers to the process of copying the image data of one image over the other. Overlaying could refer to other types of image processing methods as well such as overlaying similar images for noise reduction, Blending, etc
