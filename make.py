@@ -1,3 +1,4 @@
+import glob
 import sys
 # To add path to python source files
 sys.path.insert(0, "./src")
@@ -14,8 +15,7 @@ import numpy as np
 f = open('text/dadjokes.txt', 'r')
 
 # to choose a random background video
-rnd = lambda : 1
-
+rnd = lambda : random.randint(0,len(glob.glob1("./backgrounds","*.mp4"))-1)
 # setting the font
 font = ImageFont.truetype("fonts/mangabey-font/MangabeyRegular-rgqVO.otf", size=80)
 
