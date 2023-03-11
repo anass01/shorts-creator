@@ -1,6 +1,8 @@
 import glob
 import sys
 # To add path to python source files
+from gettext import npgettext
+
 sys.path.insert(0, "./src")
 
 from gtts import gTTS
@@ -12,20 +14,22 @@ import os
 import random
 import numpy as np
 
-f = open('text/dadjokes.txt', 'r')
+f = open('text/programming_jokes.txt', 'r',encoding='utf8')
 
 # to choose a random background video
-rnd = lambda : random.randint(0,len(glob.glob1("./backgrounds","*.mp4"))-1)
+rnd = lambda: random.randint(0, len(glob.glob1("./backgrounds", "*.mp4")) - 1)
 # setting the font
 font = ImageFont.truetype("fonts/mangabey-font/MangabeyRegular-rgqVO.otf", size=80)
 
 # to keep count of number of videos produced
+
+multiplier = 4
 count = 0
 for line in f:
     count += 1
 
     # saving the audio
-    obj = gTTS(text= line, lang = 'en', slow = False)
+    obj = gTTS(text=line, lang='en', slow=False)
     obj.save('temp.mp3')
     del obj
 
@@ -42,46 +46,36 @@ for line in f:
     frames = []
 
     # finding the duration of autio to match with the video frames
-    for i in range(len(text)):
-
+    for i in range(len(text) * multiplier):
+        y = int(np.floor(i / multiplier))
+        print(y)
         try:
             frame = background.get_next_data()
         except:
             background = iio.get_reader(f"backgrounds/{rnd()}.mp4")
             frame = background.get_next_data()
         h, w, _ = frame.shape
-        img = Image.fromarray(np.zeros((h,w,4), dtype=np.uint8))
+        img = Image.fromarray(np.zeros((h, w, 4), dtype=np.uint8))
         # creating the frame that would be in the center
-        mid = create(text[:i+1], img, font)
+        mid = create(text[:y + 1], img, font)
 
         PilFrame = Image.fromarray(frame)
-        PilFrame.paste(mid,(0,0) ,mask=mid.convert("RGBA"))
+        PilFrame.paste(mid, (0, 0), mask=mid.convert("RGBA"))
 
         frame = np.array(PilFrame)
         frames.append(frame)
-    
+
     # adding a little pause at the end
-    frames += [frames[-1]]*10
+    frames += [frames[-1]] * 10
 
     # saving the video
-    iio.mimsave("temp.mp4", frames, fps = frames.__len__()/float(duration))
+    iio.mimsave("temp.mp4", frames, fps=(frames.__len__() / float(duration)))
 
     # adding audio to the video
     video = ffmpeg.input('temp.mp4')
     audio = ffmpeg.input('temp.mp3')
-    ffmpeg.concat(video, audio, v = 1, a = 1).output(f"output/{count}.mp4").run()
+    ffmpeg.concat(video, audio, v=1, a=1).output(f"output/{count}.mp4").run()
 
 # removing the unecessary files
 os.remove("temp.mp3")
 os.remove("temp.mp4")
-
-
-
-
-    
-
-        
-
-
-
-
